@@ -1,0 +1,14 @@
+---
+
+- name: Create VLAN
+  hosts: bigip-arrow-ve
+  gather_facts: False
+  connection: local
+
+  tasks:
+  - name: Add VLAN Internal
+    bigip_vlan:
+      untagged_interface: 1.1
+      name: Internal
+      tag: 1
+    delegate_to: localhost
