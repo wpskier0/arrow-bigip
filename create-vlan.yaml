@@ -6,8 +6,9 @@
   connection: local
 
   tasks:
+
   - name: Add VLAN Internal
-    f5networks.f5_modules.bigip_vlan:
+    bigip_vlan:
       untagged_interface: 1.1
       name: Internal
       tag: 1
