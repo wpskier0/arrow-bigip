@@ -10,9 +10,9 @@
 
   tasks:
 
-  - name: Add VLAN Internal
-    bigip_vlan:
-      untagged_interface: 1.1
-      name: Internal
-      tag: 1
-    delegate_to: localhost
+    - name: Add VLAN Internal
+      bigip_vlan:
+        untagged_interface: 1.1
+        name: Internal
+        tag: 1
+      delegate_to: localhost
