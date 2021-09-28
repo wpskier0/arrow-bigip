@@ -5,6 +5,9 @@
   gather_facts: False
   connection: local
 
+  collections:
+    - f5networks.f5_modules
+
   tasks:
 
   - name: Add VLAN Internal
