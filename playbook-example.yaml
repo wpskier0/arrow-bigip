@@ -6,14 +6,6 @@
   collections:
     - f5networks.f5_modules
 
-  vars:
-    provider:
-      server: 10.4.0.61
-      user: admin
-      password: Holdarenice#
-      validate_certs: no
-      server_port: 443
-
   tasks:
     - name: Create a pool
       bigip_pool:
