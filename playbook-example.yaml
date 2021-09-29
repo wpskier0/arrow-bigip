@@ -4,7 +4,7 @@
   connection: local
 
   collections:
-    - f5networks.f5_modules
+  - f5networks.f5_modules
 
   tasks:
   - name: Create a pool
