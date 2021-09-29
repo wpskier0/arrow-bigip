@@ -1,7 +1,5 @@
 ---
 - name: Create pool
-  hosts: all
-  connection: local
 
   collections:
   - f5networks.f5_modules
