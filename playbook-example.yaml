@@ -15,7 +15,6 @@
       server_port: 443
 
   tasks:
-
     - name: Create a pool
       bigip_pool:
         provider: "{{ provider }}"
