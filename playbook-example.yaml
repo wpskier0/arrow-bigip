@@ -2,9 +2,9 @@
 - name: creating HTTPS application
   hosts: all
   tasks:
-      - name: Create a HTTP node
-        bigip_node:
-            provider: "{{ provider }}"
-            host: "10.1.10.98"
-            name: "http_node"
-        delegate_to: localhost
+  - name: Create a HTTP node
+    bigip_node:
+      provider: "{{ provider }}"
+      host: "10.1.10.98"
+      name: "http_node"
+    delegate_to: localhost
