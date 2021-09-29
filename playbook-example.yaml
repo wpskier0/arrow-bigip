@@ -3,9 +3,6 @@
   hosts: all
   connection: local
 
-  collections:
-  - f5networks.f5_modules
-
   tasks:
   - name: Create a pool
     bigip_pool:
