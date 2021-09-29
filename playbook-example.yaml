@@ -1,12 +1,10 @@
 ---
-- name: Create pool
+- name: creating HTTPS application
   hosts: all
   tasks:
-
-    - name: Create a pool
-      f5networks.f5_modules.bigip_pool:
-        provider: "{{ provider }}"
-        lb_method: ratio-member
-        name: web
-        slow_ramp_time: 120
-      delegate_to: localhost
+      - name: Create a HTTP node
+        f5networks.f5_modules.bigip_node:
+            provider: "{{ provider }}"
+            host: "10.1.10.98"
+            name: "http_node"
+        delegate_to: localhost
