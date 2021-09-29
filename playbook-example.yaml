@@ -2,13 +2,13 @@
 - name: Create pool
 
   collections:
-  - f5networks.f5_modules
+    - f5networks.f5_modules
 
   tasks:
-  - name: Create a pool
-    f5networks.f5_modules.bigip_pool:
-      provider: "{{ provider }}"
-      lb_method: ratio-member
-      name: web
-      slow_ramp_time: 120
-    delegate_to: localhost
+    - name: Create a pool
+      f5networks.f5_modules.bigip_pool:
+        provider: "{{ provider }}"
+        lb_method: ratio-member
+        name: web
+        slow_ramp_time: 120
+      delegate_to: localhost
