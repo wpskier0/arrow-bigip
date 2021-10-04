@@ -3,7 +3,7 @@
   hosts: all
   tasks:
   - name: Create a HTTP node
-    f5networks.f5_modules.bigip_node:
+    bigip_node:
       provider: "{{ provider }}"
       host: "10.1.10.98"
       name: "http_node"
