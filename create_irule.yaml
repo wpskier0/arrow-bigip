@@ -1,0 +1,27 @@
+---
+- name: Create iRule
+  hosts: all
+  gather_facts: false
+  connection: local
+  collections:
+    - f5networks.f5_modules
+  vars_files:
+    - bigip-lab.yaml
+
+  vars:
+    provider:
+      server: 10.4.0.71
+      server_port: 443
+      validate_certs: no
+      user: "{{ user }}"
+      password: "{{ password }}"
+
+  tasks:
+  - name: Create iRule
+    bigip_irule:
+      module: "{{ module }}"
+      name: "{{ objname }}"
+      src: "{{ src }}"
+      state: "{{ state }}"
+      provider: "{{ provider }}"
+    delegate_to: localhost

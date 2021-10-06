@@ -1,0 +1,29 @@
+---
+- name: Import Cert and Key
+  hosts: all
+  gather_facts: false
+  connection: local
+  collections:
+    - f5networks.f5_modules
+  vars_files:
+    - bigip-lab.yaml
+
+  vars:
+    provider:
+      server: 10.4.0.71
+      server_port: 443
+      validate_certs: no
+      user: "{{ user }}"
+      password: "{{ password }}"
+
+  tasks:
+  - name: Import Cert and Key
+    bigip_ssl_key_cert:
+      cert_name: "{{ cert_name }}"
+      key_name: "{{ key_name }}"
+      cert_content: "{{ cert_content }}"
+      key_content: "{{ key_content }}"
+      passphrase: "{{ passphrase | default('') }}"
+      state: "{{ state | default('present') }}"
+      provider: "{{ provider }}"
+    delegate_to: localhost

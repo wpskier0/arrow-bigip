@@ -1,0 +1,27 @@
+---
+- name: Create Serverssl Profile
+  hosts: all
+  gather_facts: false
+  connection: local
+  collections:
+    - f5networks.f5_modules
+  vars_files:
+    - bigip-lab.yaml
+
+  vars:
+    provider:
+      server: 10.4.0.71
+      server_port: 443
+      validate_certs: no
+      user: "{{ user }}"
+      password: "{{ password }}"
+
+  tasks:
+  - name: Create Serverssl Profile
+    bigip_profile_server_ssl:
+      name: "{{ objname }}"
+      ciphers: "{{ ciphers | default('DEFAULT') }}"
+      parent: "{{ parent | default('serverssl') }}"
+      state: "{{ state | default('present') }}"
+      provider: "{{ provider }}"
+    delegate_to: localhost

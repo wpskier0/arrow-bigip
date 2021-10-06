@@ -1,0 +1,43 @@
+---
+- name: Create Virtual Server
+  hosts: all
+  gather_facts: false
+  connection: local
+  collections:
+    - f5networks.f5_modules
+  vars_files:
+    - bigip-lab.yaml
+
+  vars:
+    provider:
+      server: 10.4.0.71
+      server_port: 443
+      validate_certs: no
+      user: "{{ user }}"
+      password: "{{ password }}"
+
+  tasks:
+  - name: Create Virtual Server
+    bigip_virtual_server:
+      name: "{{ objname }}"
+      address_translation: "{{ address_translation | default('yes') }}"
+      default_persistence_profile: "{{ default_persistence_profile | default('') }}"
+      destination: "{{ destination }}"
+      enabled_vlans: "{{ enabled_vlans | default('all') }}"
+      fallback_persistence_profile: "{{ fallback_persistence_profile | default('') }}"
+      ip_protocol: "{{ ip_protocol | default('tcp') }}"
+      irules: "{{ irules | default('') }}"
+      mask: "{{ mask | default('255.255.255.255') }}"
+      mirror: "{{ mirror | default('no') }}"
+      policies: "{{ policies | default('') }}"
+      pool: "{{ pool | default('') }}"
+      port: "{{ destport | default('') }}"
+      port_translation: "{{ port_translation | default('yes') }}"
+      profiles: "{{ profiles | default('') }}"
+      snat: "{{ snat | default('none') }}"
+      source: "{{ source | default('0.0.0.0/0') }}"
+      source_port: "{{ source_port | default('preserve') }}"
+      type: "{{ type | default('standard') }}"
+      state: "{{ state | default('present') }}"
+      provider: "{{ provider }}"
+    delegate_to: localhost

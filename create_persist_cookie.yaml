@@ -1,0 +1,37 @@
+---
+- name: Create Cookie Persistence
+  hosts: all
+  gather_facts: false
+  connection: local
+  collections:
+    - f5networks.f5_modules
+  vars_files:
+    - bigip-lab.yaml
+
+  vars:
+    provider:
+      server: 10.4.0.71
+      server_port: 443
+      validate_certs: no
+      user: "{{ user }}"
+      password: "{{ password }}"
+
+  tasks:
+  - name: Create Cookie Persistence
+    bigip_profile_persistence_cookie:
+      name: "{{ objname }}"
+      always_send: "{{ always_send | default('no') }}"
+      cookie_encryption: "{{ cookie_encryption | default('disabled') }}"
+      cookie_method: "{{ cookie_method | default('insert') }}"
+      cookie_name: "{{ cookie_name | default('') }}"
+      encrypt_cookie_pool_name: "{{ encrypt_cookie_pool_name | default('no') }}"
+      encryption_passphrase: "{{ encryption_passphrase | default('') }}"
+      http_only: "{{ http_only | default('yes') }}"
+      match_across_pools: "{{ match_across_pools | default('no') }}"
+      match_across_services: "{{ match_across_services | default('no') }}"
+      match_across_virtuals: "{{ match_across_virtuals | default('no') }}"
+      parent: "{{ parent | default('/Common/cookie') }}"
+      secure: "{{ secure | default('yes') }}"
+      state: "{{ state | default('present') }}"
+      provider: "{{ provider }}"
+    delegate_to: localhost
