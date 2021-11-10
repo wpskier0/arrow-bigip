@@ -1,0 +1,24 @@
+---
+# tasks file for create-ltm-dns-monitor.yml
+
+- name: Create DNS Monitor
+  f5networks.f5_modules.bigip_monitor_dns:
+    name: "{{ objname }}"
+    accept_rcode: "{{ accept_rcode | default(omit) }}"
+    answer_section_contains: "{{ answer_section_contains | default(omit) }}"
+    interval: "{{ interval | default('5') }}"
+    ip: "{{ ip | default('*') }}"
+    port: "{{ port | default('*') }}"
+    query_name: "{{ query_name | default(omit) }}"
+    query_type: "{{ query_type | default(omit) }}"    
+    manual_resume: "{{ manual_resume | default('no') }}"
+    receive: "{{ receive | default(omit) }}"
+    sampling_timespan: "{{ sampling_timespan | default(omit) }}"
+    time_until_up: "{{ time_until_up | default('0') }}"
+    timeout: "{{ timeout | default('16') }}"
+    up_interval: "{{ up_interval | default('0') }}"
+    parent: "{{ defaults_from | default('/Common/dns') }}"
+    state: "{{ state | default('present') }}"
+    description: "{{ description | default(omit) }}"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

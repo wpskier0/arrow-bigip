@@ -1,0 +1,14 @@
+---
+# tasks file for create-ltm-node.yml
+
+- name: Create Node
+  f5networks.f5_modules.bigip_node:
+    name: "{{ objname }}"
+    address: "{{ address | default(omit) }}"
+    fqdn: "{{ fqdn | default(omit) }}"
+    fqdn_auto_populate: "{{ fqdn_auto_populate | default(omit) }}"
+    monitors: "{{ monitors | default(omit) }}"
+    state: "{{ state | default('present') }}"
+    description: "{{ description | default(omit) }}"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

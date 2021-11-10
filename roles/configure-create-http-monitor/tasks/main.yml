@@ -1,0 +1,7 @@
+---
+# tasks file for create-ltm-http-monitor
+
+- name: Create LTM HTTP Monitor
+  import_tasks: create-ltm-http-monitor.yml
+  tags:
+    - ltm_http_monitor

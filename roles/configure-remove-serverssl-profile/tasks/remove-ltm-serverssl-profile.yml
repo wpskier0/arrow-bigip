@@ -1,0 +1,9 @@
+---
+# tasks file for remove-ltm-serverssl-profile.yml
+
+- name: Remove Serverssl Profile
+  f5networks.f5_modules.bigip_profile_server_ssl:
+    name: "{{ objname }}"
+    state: "absent"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

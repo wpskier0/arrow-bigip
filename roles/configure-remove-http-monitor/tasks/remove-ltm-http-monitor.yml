@@ -1,0 +1,9 @@
+---
+# tasks file for remove-ltm-http-monitor.yml
+
+- name: Remove HTTP Monitor
+  f5networks.f5_modules.bigip_monitor_http:
+    name: "{{ objname }}"
+    state: "absent"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

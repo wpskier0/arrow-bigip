@@ -1,0 +1,23 @@
+---
+
+- name: Remove TCP Profile
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  vars_prompt:
+  - name: "objname"
+    prompt: "Enter TCP Profile Name"
+    private: no
+
+  tasks:
+  - name: Remove TCP Profile
+    include_role:
+      name: configure-remove-tcp-profile
+    
+  - name: Save Config
+    include_role:
+      name: save-config

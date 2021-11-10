@@ -1,0 +1,9 @@
+---
+# tasks file for remove-gtm-wideip.yml
+
+- name: Remove GTM WideIP
+  f5networks.f5_modules.bigip_gtm_wide_ip:
+    name: "{{ gtm_wideip_name }}"
+    state: "absent"
+    type: "{{ type }}"
+    provider: "{{ provider }}"

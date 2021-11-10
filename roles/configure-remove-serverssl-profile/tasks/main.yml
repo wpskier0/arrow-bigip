@@ -1,0 +1,7 @@
+---
+# tasks file for remove-ltm-serverssl-profile
+
+- name: Remove LTM ServerSSL Profile
+  import_tasks: remove-ltm-serverssl-profile.yml
+  tags:
+    - ltm_serverssl_profile

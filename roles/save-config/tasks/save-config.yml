@@ -1,0 +1,9 @@
+---
+# tasks file for save-config.yml
+
+- name: Save config
+  f5networks.f5_modules.bigip_config:
+    save: yes
+    provider: "{{ provider }}"
+  tags:
+    - save

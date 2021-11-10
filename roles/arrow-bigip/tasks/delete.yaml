@@ -1,0 +1,238 @@
+- name: Delete Virtual Server
+  f5networks.f5_modules.bigip_virtual_server:
+    name: "{{ item.objname }}"
+    state: "absent"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: virtuals is defined
+  loop: "{{ virtuals | default([], true) }}"
+  tags:
+    - virtuals
+    - delete
+
+- name: Delete Serverssl Profile
+  f5networks.f5_modules.bigip_profile_server_ssl:
+    name: "{{ item.objname }}"
+    state: "absent"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: profiles_serverssl is defined
+  loop: "{{ profiles_serverssl | default([], true) }}"
+  tags:
+    - profiles_serverssl
+    - delete
+
+- name: Delete HTTP Profile
+  f5networks.f5_modules.bigip_profile_http:
+    name: "{{ item.objname }}"
+    state: "absent"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: profiles_http is defined
+  loop: "{{ profiles_http | default([], true) }}"
+  tags:
+    - profiles_http
+    - delete
+
+- name: Delete Clientssl Profile
+  f5networks.f5_modules.bigip_profile_client_ssl:
+    name: "{{ item.objname }}"
+    state: "absent"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: profiles_clientssl is defined
+  loop: "{{ profiles_clientssl | default([], true) }}"
+  tags:
+    - profiles_clientssl
+    - delete
+
+- name: Delete Pool
+  f5networks.f5_modules.bigip_pool:
+    name: "{{ item.objname }}"
+    state: "absent"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: pools is defined
+  loop: "{{ pools | default([], true) }}"
+  tags:
+    - pools
+    - delete
+
+- name: Delete Source Address Persistence
+  f5networks.f5_modules.bigip_profile_persistence_src_addr:
+    name: "{{ item.objname }}"
+    state: "absent"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: persists_src is defined
+  loop: "{{ persists_src | default([], true) }}"
+  tags:
+    - persists_src
+    - delete
+
+- name: Delete Cookie Persistence
+  f5networks.f5_modules.bigip_profile_persistence_cookie:
+    name: "{{ item.objname }}"
+    state: "absent"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: persists_cookie is defined
+  loop: "{{ persists_cookie | default([], true) }}"
+  tags:
+    - persists_cookie
+    - delete
+
+- name: Delete Node
+  f5networks.f5_modules.bigip_node:
+    name: "{{ item.objname }}"
+    state: "absent"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: nodes is defined
+  loop: "{{ nodes | default([], true) }}"
+  tags:
+    - nodes
+    - delete
+
+- name: Delete UDP Monitor
+  f5networks.f5_modules.bigip_monitor_udp:
+    name: "{{ item.objname }}"
+    state: "absent"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: monitors_udp is defined
+  loop: "{{ monitors_udp | default([], true) }}"
+  tags:
+    - monitors_udp
+    - delete
+
+- name: Delete TCP Monitor
+  f5networks.f5_modules.bigip_monitor_tcp:
+    name: "{{ item.objname }}"
+    state: "absent"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: monitors_tcp is defined
+  loop: "{{ monitors_tcp | default([], true) }}"
+  tags:
+    - monitors_tcp
+    - delete
+
+- name: Delete LDAP Monitor
+  f5networks.f5_modules.bigip_monitor_ldap:
+    name: "{{ item.objname }}"
+    state: "absent"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: monitors_ldap is defined
+  loop: "{{ monitors_ldap | default([], true) }}"
+  tags:
+    - monitors_ldap
+    - delete
+
+- name: Delete ICMP Monitor
+  f5networks.f5_modules.bigip_monitor_icmp:
+    name: "{{ item.objname }}"
+    state: "absent"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: monitors_icmp is defined
+  loop: "{{ monitors_icmp | default([], true) }}"
+  tags:
+    - monitors_icmp
+    - delete
+
+- name: Delete HTTP Monitor
+  f5networks.f5_modules.bigip_monitor_http:
+    name: "{{ item.objname }}"
+    state: "absent"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: monitors_http is defined
+  loop: "{{ monitors_http | default([], true) }}"
+  tags:
+    - monitors_http
+    - delete
+
+- name: Delete HTTPS Monitor
+  f5networks.f5_modules.bigip_monitor_https:
+    name: "{{ item.objname }}"
+    state: "absent"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: monitors_https is defined
+  loop: "{{ monitors_https | default([], true) }}"
+  tags:
+    - monitors_https
+    - delete
+
+- name: Delete Gateway ICMP Monitor
+  f5networks.f5_modules.bigip_monitor_gateway_icmp:
+    name: "{{ item.objname }}"
+    state: "absent"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: monitors_gatewayicmp is defined
+  loop: "{{ monitors_gatewayicmp | default([], true) }}"
+  debugger: on_failed
+  tags:
+    - monitors_gatewayicmp
+    - delete
+
+- name: Delete iRule
+  f5networks.f5_modules.bigip_irule:
+    module: "{{ item.module }}"
+    name: "{{ item.objname }}"
+    state: "absent"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: rules is defined
+  loop: "{{ rules | default([], true) }}"
+  tags:
+    - rules
+    - delete
+
+- name: Delete Datagroup
+  f5networks.f5_modules.bigip_data_group:
+    name: "{{ item.objname }}"
+    state: "absent"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: datagroups is defined
+  loop: "{{ datagroups | default([], true) }}"
+  tags:
+    - datagroups
+    - delete
+
+- name: Delete Cert and Key
+  f5networks.f5_modules.bigip_ssl_key_cert:
+    cert_name: "{{ item.cert_name }}"
+    key_name: "{{ item.key_name }}"
+    state: "absent"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: certs_keys is iterable
+  loop: "{{ certs_keys | default([], true) }}"
+  tags:
+    - certs_keys
+    - delete
+
+

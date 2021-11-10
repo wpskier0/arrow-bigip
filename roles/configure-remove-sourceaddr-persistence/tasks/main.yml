@@ -1,0 +1,7 @@
+---
+# tasks file for remove-ltm-sourceaddr-persistence
+
+- name: Remove LTM Source Addr Persistence
+  import_tasks: remove-ltm-sourceaddr-persistence.yml
+  tags:
+    - ltm_sourceaddr_persistence

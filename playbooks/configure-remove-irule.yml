@@ -1,0 +1,26 @@
+---
+
+- name: Remove iRule
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  vars_prompt:
+  - name: "objname"
+    prompt: "Enter iRule Name"
+    private: no
+  - name: "module"
+    prompt: "Enter module (ltm or gtm)"
+    private: no
+
+  tasks:
+  - name: Remove iRule
+    include_role:
+      name: configure-remove-irule
+    
+  - name: Save Config
+    include_role:
+      name: save-config

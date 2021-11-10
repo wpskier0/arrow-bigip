@@ -1,0 +1,4 @@
+---
+objname: "gateway_icmp1"
+interval: "15"
+timeout: "46"

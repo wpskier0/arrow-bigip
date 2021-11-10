@@ -1,0 +1,7 @@
+---
+# tasks file for create-ltm-node.yml
+
+- name: Create LTM Node
+  import_tasks: create-ltm-node.yml
+  tags:
+    - ltm_node

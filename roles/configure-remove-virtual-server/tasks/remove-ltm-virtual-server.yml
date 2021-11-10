@@ -1,0 +1,9 @@
+---
+# tasks file for remove-ltm-virtual-server.yml
+
+- name: Remove Virtual Server
+  f5networks.f5_modules.bigip_virtual_server:
+    name: "{{ objname }}"
+    state: "absent"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

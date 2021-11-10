@@ -1,0 +1,10 @@
+---
+# tasks file for remove-ltm-datagroup.yml
+
+- name: Remove Datagroup
+  f5networks.f5_modules.bigip_data_group:
+    name: "{{ objname }}"
+    internal: "{{ internal | default('yes') }}"
+    state: "absent"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

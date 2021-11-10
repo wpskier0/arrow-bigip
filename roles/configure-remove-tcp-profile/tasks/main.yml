@@ -1,0 +1,7 @@
+---
+# tasks file for remove-ltm-tcp-profile
+
+- name: Remove TCP Profile
+  import_tasks: remove-ltm-tcp-profile.yml
+  tags:
+    - ltm_tcp_profile

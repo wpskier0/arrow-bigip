@@ -1,0 +1,13 @@
+---
+objname: "oid_ldap"
+chase_referrals: "yes"
+debug: "no"
+parent: "/Common/ldap"
+ip: "*"
+port: "389"
+filter: "objectclass=person"
+interval: "30"
+mandatory_attributes: "no"
+time_until_up: "0"
+timeout: "95"
+

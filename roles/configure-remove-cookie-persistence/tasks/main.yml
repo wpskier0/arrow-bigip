@@ -1,0 +1,7 @@
+---
+# tasks file for remove-ltm-cookie-persistence.yml
+
+- name: Remove LTM Cookie Persistence
+  import_tasks: remove-ltm-cookie-persistence.yml
+  tags:
+    - ltm_cookie_persistence

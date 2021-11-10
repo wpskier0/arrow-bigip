@@ -1,0 +1,7 @@
+---
+# tasks file for create-ltm-tcp-profile
+
+- name: Create TCP Profile
+  import_tasks: create-ltm-tcp-profile.yml
+  tags:
+    - ltm_tcp_profile

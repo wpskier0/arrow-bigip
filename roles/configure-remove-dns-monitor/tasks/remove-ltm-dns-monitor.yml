@@ -1,0 +1,9 @@
+---
+# tasks file for remove-ltm-dns-monitor.yml
+
+- name: Remove DNS Monitor
+  f5networks.f5_modules.bigip_monitor_dns:
+    name: "{{ objname }}"
+    state: "absent"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

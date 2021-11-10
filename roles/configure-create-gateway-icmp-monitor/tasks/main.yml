@@ -1,0 +1,7 @@
+---
+# tasks file for create-ltm-gatewayicmp-monitor
+
+- name: Create LTM Gateway ICMP Monitor
+  import_tasks: create-ltm-gatewayicmp-monitor.yml
+  tags:
+    - ltm_gatewayicmp_monitor

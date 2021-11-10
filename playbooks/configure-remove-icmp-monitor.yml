@@ -1,0 +1,23 @@
+---
+
+- name: Remove ICMP Monitor
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  vars_prompt:
+  - name: "objname"
+    prompt: "Enter ICMP Monitor Name"
+    private: no
+
+  tasks:
+  - name: Remove ICMP Monitor
+    include_role:
+      name: configure-remove-icmp-monitor
+    
+  - name: Save Config
+    include_role:
+      name: save-config

@@ -1,0 +1,7 @@
+---
+# tasks file for remove-ltm-http-monitor
+
+- name: Remove LTM HTTP Monitor
+  import_tasks: remove-ltm-http-monitor.yml
+  tags:
+    - ltm_http_monitor

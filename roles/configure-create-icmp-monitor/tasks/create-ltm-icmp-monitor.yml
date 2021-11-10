@@ -1,0 +1,18 @@
+---
+# tasks file for create-ltm-icmp-monitor.yml
+
+- name: Create ICMP Monitor
+  f5networks.f5_modules.bigip_monitor_icmp:
+    name: "{{ objname }}"
+    interval: "{{ interval | default('5') }}"
+    ip: "{{ ip | default('*') }}"
+    manual_resume: "{{ manual_resume | default('no') }}"
+    time_until_up: "{{ time_until_up | default('0') }}"
+    timeout: "{{ timeout | default('16') }}"
+    up_interval: "{{ up_interval | default('0') }}"
+    parent: "{{ defaults_from | default('/Common/icmp') }}"
+    state: "{{ state | default('present') }}"
+    description: "{{ description | default(omit) }}"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"
+  ignore_errors: yes

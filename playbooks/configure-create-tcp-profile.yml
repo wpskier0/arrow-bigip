@@ -1,0 +1,17 @@
+---
+
+- name: Create TCP Profile
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  tasks:
+  - name: Create TCP Profile
+    include_role:
+      name: configure-create-tcp-profile
+  - name: Save Config
+    include_role:
+      name: save-config

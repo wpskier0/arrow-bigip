@@ -1,0 +1,23 @@
+---
+
+- name: Remove Pool
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  vars_prompt:
+  - name: "objname"
+    prompt: "Enter Pool Name"
+    private: no
+
+  tasks:
+  - name: Remove Pool
+    include_role:
+      name: configure-remove-pool
+    
+  - name: Save Config
+    include_role:
+      name: save-config

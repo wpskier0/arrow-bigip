@@ -1,0 +1,8 @@
+---
+objname: "datagroup1"
+type: "address"
+records:
+  - key: 0.0.0.0/32
+    value: External_NAT
+  - key: 10.10.10.10
+    value: No_NAT

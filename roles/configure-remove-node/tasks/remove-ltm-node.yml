@@ -1,0 +1,9 @@
+---
+# tasks file for remove-ltm-node.yml
+
+- name: Remove Node
+  f5networks.f5_modules.bigip_node:
+    name: "{{ objname }}"
+    state: "absent"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

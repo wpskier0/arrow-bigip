@@ -1,0 +1,23 @@
+---
+
+- name: Remove Virtual Server
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  vars_prompt:
+  - name: "objname"
+    prompt: "Enter Virtual Server Name"
+    private: no
+
+  tasks:
+  - name: Remove Virtual Server
+    include_role:
+      name: configure-remove-virtual-server
+    
+  - name: Save Config
+    include_role:
+      name: save-config

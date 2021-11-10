@@ -1,0 +1,23 @@
+---
+
+- name: Remove Node
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  vars_prompt:
+  - name: "objname"
+    prompt: "Enter Node Name"
+    private: no
+
+  tasks:
+  - name: Remove Node
+    include_role:
+      name: configure-remove-node
+    
+  - name: Save Config
+    include_role:
+      name: save-config

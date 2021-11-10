@@ -1,0 +1,9 @@
+---
+# tasks file for remove-ltm-gatewayicmp-monitor.yml
+
+- name: Remove Gateway ICMP Monitor
+  f5networks.f5_modules.bigip_monitor_gateway_icmp:
+    name: "{{ objname }}"
+    state: "absent"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

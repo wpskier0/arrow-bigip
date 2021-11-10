@@ -1,0 +1,23 @@
+---
+
+- name: Remove FastL4 Profile
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  vars_prompt:
+  - name: "objname"
+    prompt: "Enter FastL4 Profile Name"
+    private: no
+
+  tasks:
+  - name: Remove FastL4 Profile
+    include_role:
+      name: configure-remove-fastl4-profile
+    
+  - name: Save Config
+    include_role:
+      name: save-config

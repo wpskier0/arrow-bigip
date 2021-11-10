@@ -1,0 +1,15 @@
+---
+# tasks file for create-ltm-datagroup.yml
+
+- name: Create Datagroup
+  f5networks.f5_modules.bigip_data_group:
+    name: "{{ objname }}"
+    type: "{{ type | default('string') }}"
+    internal: "{{ internal | default('yes') }}"
+    external_file_name: "{{ external_file_name | default(omit) }}"
+    records: "{{ records | default(omit) }}"
+    records_src: "{{ records_src | default(omit) }}"
+    state: "{{ state | default('present') }}"
+    description: "{{ description | default(omit) }}"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

@@ -1,0 +1,17 @@
+---
+
+- name: Create Datagroup
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  tasks:
+  - name: Create Datagroup
+    include_role:
+      name: configure-create-datagroup
+  - name: Save Config
+    include_role:
+      name: save-config

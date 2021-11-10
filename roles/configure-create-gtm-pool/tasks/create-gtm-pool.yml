@@ -1,0 +1,18 @@
+---
+# tasks file for create-gtm-pool.yml
+
+- name: Create GTM Pool
+  f5networks.f5_modules.bigip_gtm_pool:
+    name: "{{ gtm_pool_name }}"
+    alternate_lb_method: "{{ alternate_lb_method | default(omit) }}"
+    fallback_ip: "{{ fallback_ip | default(omit) }}"
+    fallback_lb_method: "{{ fallback_lb_method | default(omit) }}"
+    max_answers_returned: "{{ max_answers_returned | default(omit) }}"
+    members: "{{ members | default(omit) }}"
+    monitors: "{{ monitors | default(omit) }}"
+    partition: "{{ partition | default('Common') }}"
+    preferred_lb_method: "{{ preferred_lb_method | default(omit) }}"
+    state: "{{ state | default('present') }}"
+    ttl: "{{ ttl | default(omit) }}"
+    type: "{{ type | default(omit) }}"
+    provider: "{{provider}}"

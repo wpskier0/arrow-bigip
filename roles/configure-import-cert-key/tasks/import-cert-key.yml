@@ -1,0 +1,13 @@
+---
+# tasks file for create-import-cert-key.yml
+
+- name: Import Cert and Key
+  f5networks.f5_modules.bigip_ssl_key_cert:
+    cert_name: "{{ cert_name | default(omit) }}"
+    key_name: "{{ key_name | default(omit) }}"
+    cert_content: "{{ cert_content | default(omit) }}"
+    key_content: "{{ key_content | default(omit) }}"
+    passphrase: "{{ passphrase | default(omit) }}"
+    state: "{{ state | default('present') }}"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

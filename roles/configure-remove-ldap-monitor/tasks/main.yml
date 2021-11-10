@@ -1,0 +1,7 @@
+---
+# tasks file for remove-ltm-ldap-monitor
+
+- name: Remove LTM LDAP Monitor
+  import_tasks: remove-ltm-ldap-monitor.yml
+  tags:
+    - ltm_ldap_monitor

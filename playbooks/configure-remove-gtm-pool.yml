@@ -1,0 +1,26 @@
+---
+
+- name: Remove GTM Pool
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  vars_prompt:
+  - name: "gtm_pool_name"
+    prompt: "Enter Pool Name"
+    private: no
+  - name: "type"
+    prompt: "Enter Type"
+    private: no
+
+  tasks:
+  - name: Remove GTM Pool
+    include_role:
+      name: configure-remove-gtm-pool
+    
+  - name: Save Config
+    include_role:
+      name: save-config

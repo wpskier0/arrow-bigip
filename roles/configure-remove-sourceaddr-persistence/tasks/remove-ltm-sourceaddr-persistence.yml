@@ -1,0 +1,9 @@
+---
+# tasks file for remove-ltm-sourceaddr-persistence.yml
+
+- name: Remove Source Address Persistence
+  f5networks.f5_modules.bigip_profile_persistence_src_addr:
+    name: "{{ objname }}"
+    state: "absent"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

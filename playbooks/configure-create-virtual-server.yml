@@ -1,0 +1,17 @@
+---
+
+- name: Create Virtual Server
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  tasks:
+  - name: Create Virtual Server
+    include_role:
+      name: configure-create-virtual-server
+  - name: Save Config
+    include_role:
+      name: save-config

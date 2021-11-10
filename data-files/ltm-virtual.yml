@@ -1,0 +1,23 @@
+---
+objname: "acawb.arrow.com_http"
+destination: "10.240.252.218"
+destport: "443"
+ip_protocol: "tcp"
+mask: "255.255.255.255"
+pool: "acawb.arrow.com_7788_pool"
+source: "0.0.0.0/0"
+address_translation: "yes"
+port_translation: "yes"
+profiles:
+  - http1
+  - tcp1
+  - name: clientssl1
+    context: client-side
+  - name: serverssl1
+    context: server-side
+default_persistence_profile: "cookie1"
+irules:
+  - HSL_Splunk
+snat: "automap"
+fallback_persistence_profile: "source1"
+

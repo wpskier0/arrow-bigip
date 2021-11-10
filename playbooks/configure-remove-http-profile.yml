@@ -1,0 +1,23 @@
+---
+
+- name: Remove HTTP Profile
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  vars_prompt:
+  - name: "objname"
+    prompt: "Enter HTTP Profile Name"
+    private: no
+
+  tasks:
+  - name: Remove HTTP Profile
+    include_role:
+      name: configure-remove-http-profile
+    
+  - name: Save Config
+    include_role:
+      name: save-config

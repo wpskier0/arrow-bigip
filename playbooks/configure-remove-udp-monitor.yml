@@ -1,0 +1,23 @@
+---
+
+- name: Remove UDP Monitor
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  vars_prompt:
+  - name: "objname"
+    prompt: "Enter UDP Monitor Name"
+    private: no
+
+  tasks:
+  - name: Remove UDP Monitor
+    include_role:
+      name: configure-remove-udp-monitor
+    
+  - name: Save Config
+    include_role:
+      name: save-config

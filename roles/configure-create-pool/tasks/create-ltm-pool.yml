@@ -1,0 +1,13 @@
+---
+# tasks file for create-ltm-pool.yml
+
+- name: Create Pool
+  f5networks.f5_modules.bigip_pool:
+    name: "{{ objname }}"
+    lb_method: "{{ lb_method | default('round-robin') }}"
+    monitors: "{{ monitors | default(omit) }}"
+    priority_group_activation: "{{ priority_group_activation | default('0') }}"
+    state: "{{ state | default('present') }}"
+    description: "{{ description | default(omit) }}"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

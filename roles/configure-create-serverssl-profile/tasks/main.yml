@@ -1,0 +1,7 @@
+---
+# tasks file for create-ltm-serverssl-profile
+
+- name: Create LTM ServerSSL Profile
+  import_tasks: create-ltm-serverssl-profile.yml
+  tags:
+    - ltm_serverssl_profile

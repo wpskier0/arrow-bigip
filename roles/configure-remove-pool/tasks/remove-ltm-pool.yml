@@ -1,0 +1,9 @@
+---
+# tasks file for remove-ltm-pool.yml
+
+- name: Remove Pool
+  f5networks.f5_modules.bigip_pool:
+    name: "{{ objname }}"
+    state: "absent"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

@@ -1,0 +1,7 @@
+---
+# tasks file for configure-remove-gtm-pool
+
+- name: Remove GTM Pool
+  import_tasks: remove-gtm-pool.yml
+  tags:
+    - gtm_pool

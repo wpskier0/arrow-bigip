@@ -1,0 +1,9 @@
+---
+# tasks file for remove-ltm-http-profile.yml
+
+- name: Remove HTTP Profile
+  f5networks.f5_modules.bigip_profile_http:
+    name: "{{ objname }}"
+    state: "absent"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

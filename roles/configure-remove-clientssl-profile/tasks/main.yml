@@ -1,0 +1,7 @@
+---
+# tasks file for remove-ltm-clientssl-profile
+
+- name: Remove LTM ClientSSL Profile
+  import_tasks: remove-ltm-clientssl-profile.yml
+  tags:
+    - ltm_clientssl_profile

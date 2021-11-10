@@ -1,0 +1,26 @@
+---
+
+- name: Remove Datagroup
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  vars_prompt:
+  - name: "objname"
+    prompt: "Enter Datagroup Name"
+    private: no
+  - name: "internal"
+    prompt: "Is datagroup 'internal' (yes or no)?"
+    private: no
+
+  tasks:
+  - name: Remove Datagroup
+    include_role:
+      name: configure-remove-datagroup
+    
+  - name: Save Config
+    include_role:
+      name: save-config

@@ -1,0 +1,7 @@
+---
+# tasks file for configure-create-gtm-wideip
+
+- name: Create GTM WideIP
+  import_tasks: create-gtm-wideip.yml
+  tags:
+    - gtm_wideip

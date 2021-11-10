@@ -1,0 +1,17 @@
+---
+
+- name: Import Cert Key
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  tasks:
+  - name: Import Cert Key
+    include_role:
+      name: configure-import-cert-key
+  - name: Save Config
+    include_role:
+      name: save-config

@@ -1,0 +1,4 @@
+---
+objname: "tcp1"
+interval: "10"
+timeout: "31"

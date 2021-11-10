@@ -1,0 +1,29 @@
+---
+# tasks file for create-ltm-virtual-server.yml
+
+- name: Create Virtual Server
+  f5networks.f5_modules.bigip_virtual_server:
+    name: "{{ objname }}"
+    address_translation: "{{ address_translation | default('yes') }}"
+    default_persistence_profile: "{{ default_persistence_profile | default(omit) }}"
+    destination: "{{ destination }}"
+    enabled_vlans: "{{ enabled_vlans | default(omit) }}"
+    disabled_vlans: "{{ disabled_vlans | default(omit) }}"
+    fallback_persistence_profile: "{{ fallback_persistence_profile | default(omit) }}"
+    ip_protocol: "{{ ip_protocol | default('tcp') }}"
+    irules: "{{ irules | default(omit) }}"
+    mask: "{{ mask | default('255.255.255.255') }}"
+    mirror: "{{ mirror | default('no') }}"
+    policies: "{{ policies | default(omit) }}"
+    pool: "{{ pool | default(omit) }}"
+    port: "{{ destport | default(omit) }}"
+    port_translation: "{{ port_translation | default('yes') }}"
+    profiles: "{{ profiles | default(omit) }}"
+    snat: "{{ snat | default('none') }}"
+    source: "{{ source | default('0.0.0.0/0') }}"
+    source_port: "{{ source_port | default('preserve') }}"
+    type: "{{ type | default('standard') }}"
+    state: "{{ state | default('present') }}"
+    description: "{{ description | default(omit) }}"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

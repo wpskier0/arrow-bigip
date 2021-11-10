@@ -1,0 +1,24 @@
+---
+# tasks file for create-ltm-ldap-monitor.yml
+
+- name: Create LDAP Monitor
+  f5networks.f5_modules.bigip_monitor_ldap:
+    name: "{{ objname }}"
+    base: "{{ base | default('none') }}"
+    chase_referrals: "{{ chase_referrals | default('yes') }}"
+    debug: "{{ debug | default('no') }}"
+    filter: "{{ filter | default('none') }}"
+    interval: "{{ interval | default('10') }}"
+    ip: "{{ ip | default('*') }}"
+    port: "{{ port | default('*') }}"
+    mandatory_attributes: "{{ mandatory_attributes | default('none') }}"
+    manual_resume: "{{ manual_resume | default('false') }}"
+    time_until_up: "{{ time_until_up | default('0') }}"
+    timeout: "{{ timeout | default('31') }}"
+    parent: "{{ defaults_from | default('/Common/ldap') }}"
+    security: "{{ security | default('none') }}"
+    description: "{{ description | default(omit) }}"
+    state: "{{ state | default('present') }}"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"
+  no_log: true

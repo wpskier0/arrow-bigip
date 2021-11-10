@@ -1,0 +1,23 @@
+---
+
+- name: Remove ServerSSL Profile
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  vars_prompt:
+  - name: "objname"
+    prompt: "Enter ServerSSL Profile Name"
+    private: no
+
+  tasks:
+  - name: Remove ServerSSL Profile
+    include_role:
+      name: configure-remove-serverssl-profile
+    
+  - name: Save Config
+    include_role:
+      name: save-config

@@ -1,0 +1,23 @@
+---
+
+- name: Remove Source Addr Persistence
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  vars_prompt:
+  - name: "objname"
+    prompt: "Enter Source Addr Persistence Name"
+    private: no
+
+  tasks:
+  - name: Remove Source Addr Persistence
+    include_role:
+      name: configure-remove-sourceaddr-persistence
+    
+  - name: Save Config
+    include_role:
+      name: save-config

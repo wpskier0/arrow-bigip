@@ -1,0 +1,7 @@
+---
+# tasks file for remove-ltm-http-profile
+
+- name: Remove LTM HTTP Profile
+  import_tasks: remove-ltm-http-profile.yml
+  tags:
+    - ltm_http_profile

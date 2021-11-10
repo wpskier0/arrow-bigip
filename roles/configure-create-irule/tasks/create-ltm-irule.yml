@@ -1,0 +1,12 @@
+---
+# tasks file for create-ltm-irule.yml
+
+- name: Create iRule
+  f5networks.f5_modules.bigip_irule:
+    module: "{{ module }}"
+    name: "{{ objname }}"
+    content: "{{ content | default(omit) }}"
+    src: "{{ src | default(omit) }}"
+    state: "{{ state | default('present') }}"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

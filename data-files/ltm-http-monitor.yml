@@ -1,0 +1,4 @@
+---
+objname: "http1"
+interval: "10"
+timeout: "31"

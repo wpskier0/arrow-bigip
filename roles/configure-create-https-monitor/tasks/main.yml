@@ -1,0 +1,7 @@
+---
+# tasks file for create-ltm-https-monitor
+
+- name: Create LTM HTTPS Monitor
+  import_tasks: create-ltm-https-monitor.yml
+  tags:
+    - ltm_https_monitor

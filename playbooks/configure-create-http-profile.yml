@@ -1,0 +1,17 @@
+---
+
+- name: Create HTTP Profile
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  tasks:
+  - name: Create HTTP Profile
+    include_role:
+      name: configure-create-http-profile
+  - name: Save Config
+    include_role:
+      name: save-config

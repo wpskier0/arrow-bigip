@@ -1,0 +1,21 @@
+---
+# tasks file for create-ltm-tcp-profile.yml
+
+- name: Create TCP Profile
+  f5networks.f5_modules.bigip_profile_tcp:
+    name: "{{ objname }}"
+    delayed_acks: "{{ delayed_acks | default(omit) }}"
+    early_retransmit: "{{ early_retransmit | default(omit) }}"
+    idle_timeout: "{{ idle_timeout | default(omit) }}"
+    initial_congestion_window_size: "{{ initial_congestion_window_size | default(omit) }}"
+    initial_receive_window_size: "{{ initial_receive_window_size | default(omit) }}"
+    ip_tos_to_client: "{{ ip_tos_to_client | default(omit) }}"
+    nagle: "{{ nagle | default(omit) }}"
+    proxy_options: "{{ proxy_options | default(omit) }}"
+    syn_rto_base: "{{ syn_rto_base | default(omit) }}"
+    time_wait_recycle: "{{ time_wait_recycle | default(omit) }}"
+    time_wait_timeout: "{{ time_wait_timeout | default(omit) }}"
+    parent: "{{ parent | default('tcp') }}"
+    state: "{{ state | default('present') }}"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

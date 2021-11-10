@@ -1,0 +1,7 @@
+---
+# tasks file for configure-remove-gtm-wideip
+
+- name: Remove GTM WideIP
+  import_tasks: remove-gtm-wideip.yml
+  tags:
+    - gtm_wideip

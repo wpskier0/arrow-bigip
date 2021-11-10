@@ -1,0 +1,23 @@
+---
+
+- name: Remove HTTP Monitor
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  vars_prompt:
+  - name: "objname"
+    prompt: "Enter HTTP Monitor Name"
+    private: no
+
+  tasks:
+  - name: Remove HTTP Monitor
+    include_role:
+      name: configure-remove-http-monitor
+    
+  - name: Save Config
+    include_role:
+      name: save-config

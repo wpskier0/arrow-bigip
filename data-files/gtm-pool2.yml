@@ -1,0 +1,9 @@
+---
+gtm_pool_name: "Pool2"
+fallback_lb_method: "return-to-dns"
+alternate_lb_method: "none"
+members:
+  - server: "bigip-arrow1"
+    virtual_server: "/ACUNITY/docdeliveryacprod.arrow.com_6055"
+preferred_lb_method: "global-availability"
+type: "a"

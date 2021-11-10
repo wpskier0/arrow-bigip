@@ -1,0 +1,7 @@
+---
+# tasks file for create-ltm-pool
+
+- name: Create LTM Pool
+  import_tasks: create-ltm-pool.yml
+  tags:
+    - ltm_pool

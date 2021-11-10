@@ -1,0 +1,15 @@
+---
+# tasks file for ltm-add-poolmember.yml
+
+- name: Add Pool Member
+  f5networks.f5_modules.bigip_pool_member:
+    pool: "{{ poolname }}"
+    aggregate: "{{ aggregate | default(omit) }}"
+    host: "{{ address | default(omit) }}"
+    port: "{{ memberport | default(omit) }}"
+    ratio: "{{ ratio | default('1') }}"
+    priority_group: "{{ priority_group | default('0') }}"
+    state: "{{ state | default('present') }}"
+    description: "{{ description | default(omit) }}"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

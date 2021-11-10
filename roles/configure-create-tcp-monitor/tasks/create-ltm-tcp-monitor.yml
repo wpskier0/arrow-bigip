@@ -1,0 +1,18 @@
+---
+# tasks file for create-ltm-tcp-monitor.yml
+
+- name: Create TCP Monitor
+  f5networks.f5_modules.bigip_monitor_tcp:
+    name: "{{ objname }}"
+    interval: "{{ interval | default('5') }}"
+    ip: "{{ ip | default('*') }}"
+    port: "{{ port | default('*') }}"
+    receive: "{{ receive | default(omit) }}"
+    send: "{{ send | default(omit) }}"
+    time_until_up: "{{ time_until_up | default('0') }}"
+    timeout: "{{ timeout | default('16') }}"
+    parent: "{{ defaults_from | default('/Common/tcp') }}"
+    state: "{{ state | default('present') }}"
+    description: "{{ description | default(omit) }}"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

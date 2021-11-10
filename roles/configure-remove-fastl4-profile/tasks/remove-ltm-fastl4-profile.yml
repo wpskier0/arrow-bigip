@@ -1,0 +1,9 @@
+---
+# tasks file for remove-ltm-fastl4-profile.yml
+
+- name: Remove FastL4 Profile
+  f5networks.f5_modules.bigip_profile_fastl4:
+    name: "{{ objname }}"
+    state: "absent"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

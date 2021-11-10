@@ -1,0 +1,7 @@
+---
+# tasks file for create-ltm-sourceaddr-persistence
+
+- name: Create LTM Source Addr Persistence
+  import_tasks: create-ltm-sourceaddr-persistence.yml
+  tags:
+    - ltm_sourceaddr_persistence

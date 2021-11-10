@@ -1,0 +1,7 @@
+---
+# tasks file for ltm-add-poolmember.yml
+
+- name: LTM Add Pool Member 
+  import_tasks: ltm-add-poolmember.yml
+  tags:
+    - ltm_add_poolmember

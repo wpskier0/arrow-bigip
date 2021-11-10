@@ -1,0 +1,7 @@
+---
+# tasks file for create-ltm-http-profile
+
+- name: Create LTM HTTP Profile
+  import_tasks: create-ltm-http-profile.yml
+  tags:
+    - ltm_http_profile

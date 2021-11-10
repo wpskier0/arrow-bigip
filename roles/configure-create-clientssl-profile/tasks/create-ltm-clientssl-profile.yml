@@ -1,0 +1,13 @@
+---
+# tasks file for create-ltm-clientssl-profile.yml
+
+- name: Create Clientssl Profile
+  f5networks.f5_modules.bigip_profile_client_ssl:
+    name: "{{ objname }}"
+    ciphers: "{{ ciphers | default('DEFAULT') }}"
+    cipher_group: "{{ cipher_group | default('') }}"
+    parent: "{{ parent | default('clientssl') }}"
+    cert_key_chain: "{{ cert_key_chain | default(omit) }}"
+    state: "{{ state | default('present') }}"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

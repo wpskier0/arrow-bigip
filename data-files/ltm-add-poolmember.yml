@@ -1,0 +1,8 @@
+poolname: "acawb.arrow.com_7788_pool"
+aggregate:
+  - name: "10.5.32.126"
+    port: "7788"
+    address: "10.5.32.126"
+  - name: "10.5.32.96"
+    port: "7788"
+    address: "10.5.32.96"

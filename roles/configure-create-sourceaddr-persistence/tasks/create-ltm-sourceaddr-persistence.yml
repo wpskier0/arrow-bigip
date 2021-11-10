@@ -1,0 +1,16 @@
+---
+# tasks file for create-ltm-sourceaddr-persistence.yml
+
+- name: Create Source Address Persistence
+  f5networks.f5_modules.bigip_profile_persistence_src_addr:
+    name: "{{ objname }}"
+    entry_timeout: "{{ entry_timeout | default('180') }}"
+    mask: "{{ mask | default(omit) }}"
+    match_across_pools: "{{ match_across_pools | default('no') }}"
+    match_across_services: "{{ match_across_services | default('no') }}"
+    match_across_virtuals: "{{ match_across_virtuals | default('no') }}"
+    mirror: "{{ mirror | default('no') }}"
+    parent: "{{ parent | default('/Common/source_addr') }}"
+    state: "{{ state | default('present') }}"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

@@ -1,0 +1,7 @@
+---
+# tasks file for save-config
+
+- name: Save Config 
+  import_tasks: save-config.yml
+  tags:
+    - save_config

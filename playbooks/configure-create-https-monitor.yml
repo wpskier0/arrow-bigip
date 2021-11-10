@@ -1,0 +1,17 @@
+---
+
+- name: Create HTTPS Monitor
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  tasks:
+  - name: Create HTTPS Monitor
+    include_role:
+      name: configure-create-https-monitor
+  - name: Save Config
+    include_role:
+      name: save-config

@@ -1,0 +1,9 @@
+---
+# tasks file for remove-gtm-pool.yml
+
+- name: Remove GTM Pool
+  f5networks.f5_modules.bigip_gtm_pool:
+    name: "{{ gtm_pool_name}}"
+    state: "absent"
+    type: "{{ type }}"
+    provider: "{{provider}}"

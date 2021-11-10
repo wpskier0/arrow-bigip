@@ -1,0 +1,525 @@
+---
+# tasks file for arrow-bigip
+- name: Run Commands
+  f5networks.f5_modules.bigip_command:
+    commands: "{{ item.commands }}"
+    provider: "{{ provider }}"
+  when: commands is iterable
+  loop: "{{ commands | default([], true) }}"
+  tags:
+    - commands
+    - create
+    
+- name: Import Cert and Key
+  f5networks.f5_modules.bigip_ssl_key_cert:
+    cert_name: "{{ item.cert_name | default(omit) }}"
+    key_name: "{{ item.key_name | default(omit) }}"
+    cert_content: "{{ item.cert_content | default(omit) }}"
+    key_content: "{{ item.key_content | default(omit) }}"
+    passphrase: "{{ item.passphrase | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: certs_keys is iterable
+  loop: "{{ certs_keys | default([], true) }}"
+  tags:
+    - certs_keys
+    - create
+
+- name: Create Datagroup
+  f5networks.f5_modules.bigip_data_group:
+    name: "{{ item.objname }}"
+    type: "{{ item.type | default('string') }}"
+    internal: "{{ item.internal | default('yes') }}"
+    external_file_name: "{{ external_file_name | default(omit) }}"
+    records: "{{ item.records | default(omit) }}"
+    records_src: "{{ item.records_src | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+    description: "{{ item.description | default(omit) }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: datagroups is defined
+  loop: "{{ datagroups | default([], true) }}"
+  tags:
+    - datagroups
+    - create
+
+- name: Create TCP Profile
+  f5networks.f5_modules.bigip_profile_tcp:
+    name: "{{ item.objname }}"
+    delayed_acks: "{{ item.delayed_acks | default(omit) }}"
+    early_retransmit: "{{ item.early_retransmit | default(omit) }}"
+    idle_timeout: "{{ item.idle_timeout | default(omit) }}"
+    initial_congestion_window_size: "{{ item.initial_congestion_window_size | default(omit) }}"
+    initial_receive_window_size: "{{ item.initial_receive_window_size | default(omit) }}"
+    ip_tos_to_client: "{{ item.ip_tos_to_client | default(omit) }}"
+    nagle: "{{ item.nagle | default(omit) }}"
+    proxy_options: "{{ item.proxy_options | default(omit) }}"
+    syn_rto_base: "{{ item.syn_rto_base | default(omit) }}"
+    time_wait_recycle: "{{ item.time_wait_recycle | default(omit) }}"
+    time_wait_timeout: "{{ item.time_wait_timeout | default(omit) }}"
+    parent: "{{ item.parent | default('tcp') }}"
+    state: "{{ item.state | default('present') }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: profiles_tcp is defined
+  loop: "{{ profiles_tcp | default([], true) }}"
+  tags:
+    - profiles_tcp
+    - create
+
+- name: Create FastL4 Profile
+  f5networks.f5_modules.bigip_profile_fastl4:
+    name: "{{ item.objname }}"
+    client_timeout: "{{ item.client_timeout | default(omit) }}"
+    explicit_flow_migration: "{{ item.explicit_flow_migration | default(omit) }}"
+    hardware_syn_cookie: "{{ item.hardware_syn_cookie | default(omit) }}"
+    idle_timeout: "{{ item.idle_timeout | default(omit) }}"
+    ip_df_mode: "{{ item.ip_df_mode | default(omit) }}"
+    ip_tos_to_client: "{{ item.ip_tos_to_client | default(omit) }}"
+    ip_tos_to_server: "{{ item.ip_tos_to_server | default(omit) }}"
+    ip_ttl_mode: "{{ item.ip_ttl_mode | default(omit) }}"
+    ip_ttl_v4: "{{ item.ip_ttl_v4 | default(omit) }}"
+    ip_ttl_v6: "{{ item.ip_ttl_v6 | default(omit) }}"
+    keep_alive_interval: "{{ item.keep_alive_interval | default(omit) }}"
+    late_binding: "{{ item.late_binding | default(omit) }}"
+    link_qos_to_client: "{{ item.link_qos_to_client | default(omit) }}"
+    link_qos_to_server: "{{ item.link_qos_to_server | default(omit) }}"
+    loose_close: "{{ item.loose_close | default(omit) }}"
+    loose_initialization: "{{ item.loose_initialization | default(omit) }}"
+    mss_override: "{{ item.mss_override | default(omit) }}"
+    pva_acceleration: "{{ item.pva_acceleration | default(omit) }}"
+    reassemble_fragments: "{{ item.reassemble_fragments | default(omit) }}"
+    receive_window_size: "{{ item.receive_window_size | default(omit) }}"
+    reset_on_timeout: "{{ item.reset_on_timeout | default(omit) }}"
+    rtt_from_client: "{{ item.rtt_from_client | default(omit) }}"
+    rtt_from_server: "{{ item.rtt_from_server | default(omit) }}"
+    server_sack: "{{ item.server_sack | default(omit) }}"
+    server_timestamp: "{{ item.server_timestamp | default(omit) }}"
+    syn_cookie_enable: "{{ item.syn_cookie_enable | default(omit) }}"
+    syn_cookie_mss: "{{ item.syn_cookie_mss | default(omit) }}"
+    tcp_close_timeout: "{{ item.tcp_close_timeout | default(omit) }}"
+    tcp_generate_isn: "{{ item.tcp_generate_isn | default(omit) }}"
+    tcp_handshake_timeout: "{{ item.tcp_handshake_timeout | default(omit) }}"
+    tcp_strip_sack: "{{ item.tcp_strip_sack | default(omit) }}"
+    tcp_time_wait_timeout: "{{ item.tcp_time_wait_timeout | default(omit) }}"
+    tcp_timestamp_mode: "{{ item.tcp_timestamp_mode | default(omit) }}"
+    tcp_wscale_mode: "{{ item.tcp_wscale_mode | default(omit) }}"
+    timeout_recovery: "{{ item.timeout_recovery | default(omit) }}"
+    parent: "{{ item.parent | default('fastL4') }}"
+    state: "{{ item.state | default('present') }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: profiles_fastl4 is defined
+  loop: "{{ profiles_fastl4 | default([], true) }}"
+  tags:
+    - profiles_fastl4
+    - create
+
+- name: Create Clientssl Profile
+  f5networks.f5_modules.bigip_profile_client_ssl:
+    name: "{{ item.objname }}"
+    ciphers: "{{ item.ciphers | default('DEFAULT') }}"
+    cipher_group: "{{ item.cipher_group | default('') }}"
+    parent: "{{ item.parent | default('clientssl') }}"
+    cert_key_chain: "{{ item.cert_key_chain | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: profiles_clientssl is defined
+  loop: "{{ profiles_clientssl | default([], true) }}"
+  tags:
+    - profiles_clientssl
+    - create
+
+- name: Create HTTP Profile
+  f5networks.f5_modules.bigip_profile_http:
+    name: "{{ item.objname }}"
+    insert_xforwarded_for: "{{ item.insert_xforwarded_for | default('no') }}"
+    proxy_type: "{{ item.proxy_type | default('reverse') }}"
+    state: "{{ item.state | default('present') }}"
+    description: "{{ item.description | default(omit) }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: profiles_http is defined
+  loop: "{{ profiles_http | default([], true) }}"
+  tags:
+    - profiles_http
+    - create
+
+- name: Create Serverssl Profile
+  f5networks.f5_modules.bigip_profile_server_ssl:
+    name: "{{ item.objname }}"
+    ciphers: "{{ item.ciphers | default('DEFAULT') }}"
+    parent: "{{ item.parent | default('serverssl') }}"
+    state: "{{ item.state | default('present') }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: profiles_serverssl is defined
+  loop: "{{ profiles_serverssl | default([], true) }}"
+  tags:
+    - profiles_serverssl
+    - create
+
+- name: Create Gateway ICMP Monitor
+  f5networks.f5_modules.bigip_monitor_gateway_icmp:
+    name: "{{ item.objname }}"
+    interval: "{{ item.interval | default('5') }}"
+    ip: "{{ item.ip | default('*') }}"
+    port: "{{ item.port | default('*') }}"
+    manual_resume: "{{ item.manual_resume | default('no') }}"
+    time_until_up: "{{ item.time_until_up | default('0') }}"
+    timeout: "{{ item.timeout | default('16') }}"
+    up_interval: "{{ item.up_interval | default('0') }}"
+    parent: "{{ item.defaults_from | default('/Common/gateway_icmp') }}"
+    state: "{{ item.state | default('present') }}"
+    description: "{{ item.description | default(omit) }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: monitors_gatewayicmp is defined
+  loop: "{{ monitors_gatewayicmp | default([], true) }}"
+  ignore_errors: yes
+  tags:
+    - monitors_gatewayicmp
+    - create
+
+- name: Create DNS Monitor
+  f5networks.f5_modules.bigip_monitor_dns:
+    name: "{{ item.objname }}"
+    accept_rcode: "{{ item.accept_rcode | default(omit) }}"
+    answer_section_contains: "{{ item.answer_section_contains | default(omit) }}"
+    interval: "{{ item.interval | default('5') }}"
+    ip: "{{ item.ip | default('*') }}"
+    port: "{{ item.port | default('*') }}"
+    query_name: "{{ item.query_name | default(omit) }}"
+    query_type: "{{ item.query_type | default(omit) }}"    
+    manual_resume: "{{ item.manual_resume | default('no') }}"
+    receive: "{{ item.receive | default(omit) }}"
+    sampling_timespan: "{{ item.sampling_timespan | default(omit) }}"
+    time_until_up: "{{ item.time_until_up | default('0') }}"
+    timeout: "{{ item.timeout | default('16') }}"
+    up_interval: "{{ item.up_interval | default('0') }}"
+    parent: "{{ item.defaults_from | default('/Common/gateway_icmp') }}"
+    state: "{{ item.state | default('present') }}"
+    description: "{{ item.description | default(omit) }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: monitors_dns is defined
+  loop: "{{ monitors_dns | default([], true) }}"
+  tags:
+    - monitors_dns
+    - create
+
+- name: Create HTTPS Monitor
+  f5networks.f5_modules.bigip_monitor_https:
+    name: "{{ item.objname }}"
+    cipher_list: "{{ item.cipher_list | default('none') }}"
+    interval: "{{ item.interval | default('5') }}"
+    ip: "{{ item.ip | default('*') }}"
+    port: "{{ item.port | default('*') }}"
+    receive: "{{ item.receive | default(omit) }}"
+    receive_disable: "{{ item.receive_disable | default(omit) }}"
+    send: "{{ item.send | default(omit) }}"
+    ssl_profile: "{{ item.ssl_profile | default(omit) }}"
+    target_password: "{{ item.target_password | default(omit) }}"
+    target_username: "{{ item.target_username | default(omit) }}"
+    time_until_up: "{{ item.time_until_up | default('0') }}"
+    timeout: "{{ item.timeout | default('16') }}"
+    up_interval: "{{ item.up_interval | default('0') }}"
+    parent: "{{ item.defaults_from | default('/Common/https') }}"
+    state: "{{ item.state | default('present') }}"
+    description: "{{ item.description | default(omit) }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: monitors_https is defined
+  loop: "{{ monitors_https | default([], true) }}"
+  tags:
+    - monitors_https
+    - create
+
+- name: Create HTTP Monitor
+  f5networks.f5_modules.bigip_monitor_http:
+    name: "{{ item.objname }}"
+    interval: "{{ item.interval | default('5') }}"
+    ip: "{{ item.ip | default('*') }}"
+    port: "{{ item.port | default('*') }}"
+    receive: "{{ item.receive | default(omit) }}"
+    receive_disable: "{{ item.receive_disable | default(omit) }}"
+    send: "{{ item.send | default(omit) }}"
+    target_password: "{{ item.target_password | default(omit) }}"
+    target_username: "{{ item.target_username | default(omit) }}"
+    time_until_up: "{{ item.time_until_up | default('0') }}"
+    timeout: "{{ item.timeout | default('16') }}"
+    parent: "{{ item.defaults_from | default('/Common/http') }}"
+    state: "{{ item.state | default('present') }}"
+    description: "{{ item.description | default(omit) }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: monitors_http is defined
+  loop: "{{ monitors_http | default([], true) }}"
+  tags:
+    - monitors_http
+    - create
+
+- name: Create ICMP Monitor
+  f5networks.f5_modules.bigip_monitor_icmp:
+    name: "{{ item.objname }}"
+    interval: "{{ item.interval | default('5') }}"
+    ip: "{{ item.ip | default('*') }}"
+    manual_resume: "{{ item.manual_resume | default('no') }}"
+    time_until_up: "{{ item.time_until_up | default('0') }}"
+    timeout: "{{ item.timeout | default('16') }}"
+    up_interval: "{{ item.up_interval | default('0') }}"
+    parent: "{{ item.defaults_from | default('/Common/icmp') }}"
+    state: "{{ item.state | default('present') }}"
+    description: "{{ item.description | default(omit) }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: monitors_icmp is defined
+  loop: "{{ monitors_icmp | default([], true) }}"
+  ignore_errors: yes
+  tags:
+    - monitors_icmp
+    - create
+
+- name: Create LDAP Monitor
+  f5networks.f5_modules.bigip_monitor_ldap:
+    name: "{{ item.objname }}"
+    base: "{{ item.base | default('none') }}"
+    chase_referrals: "{{ item.chase_referrals | default('yes') }}"
+    debug: "{{ item.debug | default('no') }}"
+    filter: "{{ item.filter | default('none') }}"
+    interval: "{{ item.interval | default('10') }}"
+    ip: "{{ item.ip | default('*') }}"
+    port: "{{ item.port | default('*') }}"
+    mandatory_attributes: "{{ item.mandatory_attributes | default('none') }}"
+    manual_resume: "{{ item.manual_resume | default('false') }}"
+    time_until_up: "{{ item.time_until_up | default('0') }}"
+    timeout: "{{ item.timeout | default('31') }}"
+    parent: "{{ item.defaults_from | default('/Common/ldap') }}"
+    security: "{{ item.security | default('none') }}"
+    description: "{{ item.description | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: monitors_ldap is defined
+  loop: "{{ monitors_ldap | default([], true) }}"
+  no_log: true
+  tags:
+    - monitors_ldap
+    - create
+
+- name: Create TCP Monitor
+  f5networks.f5_modules.bigip_monitor_tcp:
+    name: "{{ item.objname }}"
+    interval: "{{ item.interval | default('5') }}"
+    ip: "{{ item.ip | default('*') }}"
+    port: "{{ item.port | default('*') }}"
+    receive: "{{ item.receive | default(omit) }}"
+    send: "{{ item.send | default(omit) }}"
+    time_until_up: "{{ item.time_until_up | default('0') }}"
+    timeout: "{{ item.timeout | default('16') }}"
+    parent: "{{ item.defaults_from | default('/Common/tcp') }}"
+    state: "{{ item.state | default('present') }}"
+    description: "{{ item.description | default(omit) }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: monitors_tcp is defined
+  loop: "{{ monitors_tcp | default([], true) }}"
+  tags:
+    - monitors_tcp
+    - create
+
+- name: Create UDP Monitor
+  f5networks.f5_modules.bigip_monitor_udp:
+    name: "{{ item.objname }}"
+    interval: "{{ item.interval | default('10') }}"
+    ip: "{{ item.ip | default('*') }}"
+    port: "{{ item.port | default('*') }}"
+    receive: "{{ item.receive | default(omit) }}"
+    send: "{{ item.send | default(omit) }}"
+    time_until_up: "{{ item.time_until_up | default('0') }}"
+    timeout: "{{ item.timeout | default('31') }}"
+    parent: "{{ item.defaults_from | default('/Common/udp') }}"
+    state: "{{ item.state | default('present') }}"
+    description: "{{ item.description | default(omit) }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: monitors_udp is defined
+  loop: "{{ monitors_udp | default([], true) }}"
+  tags:
+    - monitors_udp
+    - create
+
+- name: Create Node
+  f5networks.f5_modules.bigip_node:
+    name: "{{ item.objname }}"
+    address: "{{ item.address | default(omit) }}"
+    fqdn: "{{ item.fqdn | default(omit) }}"
+    fqdn_auto_populate: "{{ item.fqdn_auto_populate | default(omit) }}"
+    monitors: "{{ item.monitors | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+    description: "{{ item.description | default(omit) }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: nodes is defined
+  loop: "{{ nodes | default([], true) }}"
+  tags:
+    - nodes
+    - create
+
+- name: Create Cookie Persistence
+  f5networks.f5_modules.bigip_profile_persistence_cookie:
+    name: "{{ item.objname }}"
+    always_send: "{{ item.always_send | default('no') }}"
+    cookie_encryption: "{{ item.cookie_encryption | default('disabled') }}"
+    cookie_method: "{{ item.cookie_method | default('insert') }}"
+    cookie_name: "{{ item.cookie_name | default(omit) }}"
+    encrypt_cookie_pool_name: "{{ item.encrypt_cookie_pool_name | default('no') }}"
+    encryption_passphrase: "{{ item.encryption_passphrase | default(omit) }}"
+    http_only: "{{ item.http_only | default('yes') }}"
+    match_across_pools: "{{ item.match_across_pools | default('no') }}"
+    match_across_services: "{{ item.match_across_services | default('no') }}"
+    match_across_virtuals: "{{ item.match_across_virtuals | default('no') }}"
+    parent: "{{ item.parent | default('/Common/cookie') }}"
+    secure: "{{ item.secure | default('yes') }}"
+    state: "{{ item.state | default('present') }}"
+    description: "{{ item.description | default(omit) }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: persists_cookie is defined
+  loop: "{{ persists_cookie | default([], true) }}"
+  tags:
+    - persists_cookie
+    - create
+
+- name: Create Source Address Persistence
+  f5networks.f5_modules.bigip_profile_persistence_src_addr:
+    name: "{{ item.objname }}"
+    entry_timeout: "{{ item.entry_timeout | default('180') }}"
+    mask: "{{ item.mask | default(omit) }}"
+    match_across_pools: "{{ item.match_across_pools | default('no') }}"
+    match_across_services: "{{ item.match_across_services | default('no') }}"
+    match_across_virtuals: "{{ item.match_across_virtuals | default('no') }}"
+    mirror: "{{ item.mirror | default('no') }}"
+    parent: "{{ item.parent | default('/Common/source_addr') }}"
+    state: "{{ item.state | default('present') }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: persists_src is defined
+  loop: "{{ persists_src | default([], true) }}"
+  tags:
+    - persists_src
+    - create
+
+- name: Create Pool
+  f5networks.f5_modules.bigip_pool:
+    name: "{{ item.objname }}"
+    lb_method: "{{ item.lb_method | default('round-robin') }}"
+    monitors: "{{ item.monitors | default(omit) }}"
+    priority_group_activation: "{{ item.priority_group_activation | default('0') }}"
+    state: "{{ item.state | default('present') }}"
+    description: "{{ item.description | default(omit) }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: pools is defined
+  loop: "{{ pools | default([], true) }}"
+  tags:
+    - pools
+    - create
+
+- name: Add Pool Member
+  f5networks.f5_modules.bigip_pool_member:
+    pool: "{{ item.poolname }}"
+    aggregate: "{{ item.aggregate | default(omit) }}"
+    host: "{{ item.address | default(omit) }}"
+    port: "{{ item.memberport | default(omit) }}"
+    ratio: "{{ item.ratio | default('1') }}"
+    priority_group: "{{ item.priority_group | default('0') }}"
+    state: "{{ item.state | default('present') }}"
+    description: "{{ item.description | default(omit) }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: pool_members is defined
+  loop: "{{ pool_members | default([], true) }}"
+  tags:
+    - pool_members
+    - create
+
+- name: Create iRule
+  f5networks.f5_modules.bigip_irule:
+    module: "{{ item.module }}"
+    name: "{{ item.objname }}"
+    content: "{{ item.content | default(omit) }}"
+    src: "{{ item.src | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: rules is defined
+  loop: "{{ rules | default([], true) }}"
+  tags:
+    - rules
+    - create
+
+- name: Create Virtual Server
+  f5networks.f5_modules.bigip_virtual_server:
+    name: "{{ item.objname }}"
+    address_translation: "{{ item.address_translation | default('yes') }}"
+    default_persistence_profile: "{{ item.default_persistence_profile | default(omit) }}"
+    destination: "{{ item.destination }}"
+    enabled_vlans: "{{ item.enabled_vlans | default(omit) }}"
+    disabled_vlans: "{{ item.disabled_vlans | default(omit) }}"
+    fallback_persistence_profile: "{{ item.fallback_persistence_profile | default(omit) }}"
+    ip_protocol: "{{ item.ip_protocol | default('tcp') }}"
+    irules: "{{ item.irules | default(omit) }}"
+    mask: "{{ item.mask | default('255.255.255.255') }}"
+    mirror: "{{ item.mirror | default('no') }}"
+    policies: "{{ item.policies | default(omit) }}"
+    pool: "{{ item.pool | default(omit) }}"
+    port: "{{ item.destport | default(omit) }}"
+    port_translation: "{{ item.port_translation | default('yes') }}"
+    profiles: "{{ item.profiles | default(omit) }}"
+    snat: "{{ item.snat | default('none') }}"
+    source: "{{ item.source | default('0.0.0.0/0') }}"
+    source_port: "{{ item.source_port | default('preserve') }}"
+    type: "{{ item.type | default('standard') }}"
+    state: "{{ item.state | default('present') }}"
+    description: "{{ item.description | default(omit) }}"
+    partition: "{{ item.partition | default('Common') }}"
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  when: virtuals is defined
+  loop: "{{ virtuals | default([], true) }}"
+  tags:
+    - virtuals
+    - create
+
+- name: Save config
+  f5networks.f5_modules.bigip_config:
+    save: yes
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  tags:
+    - save
+

@@ -1,0 +1,12 @@
+---
+# tasks file for create-ltm-http-profile.yml
+
+- name: Create HTTP Profile
+  f5networks.f5_modules.bigip_profile_http:
+    name: "{{ objname }}"
+    insert_xforwarded_for: "{{ insert_xforwarded_for | default('no') }}"
+    proxy_type: "{{ proxy_type | default('reverse') }}"
+    state: "{{ state | default('present') }}"
+    description: "{{ description | default(omit) }}"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

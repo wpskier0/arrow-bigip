@@ -1,0 +1,23 @@
+---
+
+- name: Remove Cookie Persistence
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  vars_prompt:
+  - name: "objname"
+    prompt: "Enter Cookie Persistence Name"
+    private: no
+
+  tasks:
+  - name: Remove Cookie Persistence
+    include_role:
+      name: configure-remove-cookie-persistence
+    
+  - name: Save Config
+    include_role:
+      name: save-config

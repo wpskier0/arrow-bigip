@@ -1,0 +1,16 @@
+when CLIENT_ACCEPTED {
+    set client "[IP::client_addr]:[TCP::client_port]"
+    set vip "[IP::local_addr]:[TCP::local_port]"
+    set node "unknown"
+    set hsl [HSL::open -proto UDP -pool syslog-splunk-pool]
+}
+
+when SERVER_CONNECTED {
+    set node "[IP::server_addr]:[TCP::server_port]"
+}
+
+# High Speed Logging
+
+when CLIENT_CLOSED {
+    HSL::send $hsl "<134>Client: $client established a connection to $vip and load balanced to server $node at [clock format [clock seconds] -format "%Y-%m-%d %H:%M:%S"]"
+}

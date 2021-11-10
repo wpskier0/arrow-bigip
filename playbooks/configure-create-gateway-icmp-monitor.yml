@@ -1,0 +1,17 @@
+---
+
+- name: Create Gateway ICMP Monitor
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  tasks:
+  - name: Create Gateway ICMP Monitor
+    include_role:
+      name: configure-create-gateway-icmp-monitor
+  - name: Save Config
+    include_role:
+      name: save-config

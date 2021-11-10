@@ -1,0 +1,7 @@
+---
+# tasks file for remove-ltm-dns-monitor
+
+- name: Remove LTM DNS Monitor
+  import_tasks: remove-ltm-dns-monitor.yml
+  tags:
+    - ltm_dns_monitor

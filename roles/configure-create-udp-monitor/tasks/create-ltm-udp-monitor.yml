@@ -1,0 +1,18 @@
+---
+# tasks file for create-ltm-udp-monitor.yml
+
+- name: Create UDP Monitor
+  f5networks.f5_modules.bigip_monitor_udp:
+    name: "{{ objname }}"
+    interval: "{{ interval | default('10') }}"
+    ip: "{{ ip | default('*') }}"
+    port: "{{ port | default('*') }}"
+    receive: "{{ receive | default(omit) }}"
+    send: "{{ send | default(omit) }}"
+    time_until_up: "{{ time_until_up | default('0') }}"
+    timeout: "{{ timeout | default('31') }}"
+    parent: "{{ defaults_from | default('/Common/udp') }}"
+    state: "{{ state | default('present') }}"
+    description: "{{ description | default(omit) }}"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

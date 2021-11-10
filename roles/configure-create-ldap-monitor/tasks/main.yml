@@ -1,0 +1,7 @@
+---
+# tasks file for create-ltm-ldap-monitor
+
+- name: Create LTM LDAP Monitor
+  import_tasks: create-ltm-ldap-monitor.yml
+  tags:
+    - ltm_ldap_monitor

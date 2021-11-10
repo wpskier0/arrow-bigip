@@ -1,0 +1,7 @@
+---
+# tasks file for create-ltm-clientssl-profile
+
+- name: Create LTM ClientSSL Profile
+  import_tasks: create-ltm-clientssl-profile.yml
+  tags:
+    - ltm_clientssl_profile

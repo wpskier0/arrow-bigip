@@ -1,0 +1,9 @@
+---
+# tasks file for remove-ltm-cookie-persistence.yml
+
+- name: Remove Cookie Persistence
+  f5networks.f5_modules.bigip_profile_persistence_cookie:
+    name: "{{ objname }}"
+    state: "absent"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

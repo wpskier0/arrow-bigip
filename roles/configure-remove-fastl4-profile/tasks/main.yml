@@ -1,0 +1,7 @@
+---
+# tasks file for remove-ltm-fastl4-profile
+
+- name: Remove LTM FastL4 Profile
+  import_tasks: remove-ltm-fastl4-profile.yml
+  tags:
+    - ltm_fastl4_profile

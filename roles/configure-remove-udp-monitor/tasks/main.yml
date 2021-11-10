@@ -1,0 +1,7 @@
+---
+# tasks file for remove-ltm-udp-monitor
+
+- name: Remove LTM UDP Monitor
+  import_tasks: remove-ltm-udp-monitor.yml
+  tags:
+    - ltm_udp_monitor

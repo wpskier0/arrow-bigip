@@ -1,0 +1,7 @@
+---
+# tasks file for run-command.yml
+
+- name: Run Commands
+  f5networks.f5_modules.bigip_command:
+    commands: "{{ commands }}"
+    provider: "{{ provider }}"

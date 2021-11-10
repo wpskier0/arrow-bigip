@@ -1,0 +1,7 @@
+---
+# tasks file for remove-ltm-tcp-monitor
+
+- name: Remove LTM TCP Monitor
+  import_tasks: remove-ltm-tcp-monitor.yml
+  tags:
+    - ltm_tcp_monitor

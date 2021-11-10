@@ -1,0 +1,13 @@
+- name: Gather Info
+  f5networks.f5_modules.bigip_device_info:
+    gather_subset:
+      - all
+    provider: "{{ provider }}"
+  delegate_to: localhost
+  register: info_result
+  tags:
+    - info
+
+- name: Display Info
+  tags:
+    - info

@@ -1,0 +1,9 @@
+---
+# tasks file for remove-ltm-tcp-monitor.yml
+
+- name: Remove TCP Monitor
+  f5networks.f5_modules.bigip_monitor_tcp:
+    name: "{{ objname }}"
+    state: "absent"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

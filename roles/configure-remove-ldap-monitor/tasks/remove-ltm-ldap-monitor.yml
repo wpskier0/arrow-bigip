@@ -1,0 +1,9 @@
+---
+# tasks file for remove-ltm-ldap-monitor.yml
+
+- name: Remove LDAP Monitor
+  f5networks.f5_modules.bigip_monitor_ldap:
+    name: "{{ objname }}"
+    state: "absent"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

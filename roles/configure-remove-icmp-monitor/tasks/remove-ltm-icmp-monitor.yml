@@ -1,0 +1,9 @@
+---
+# tasks file for remove-ltm-icmp-monitor.yml
+
+- name: Remove ICMP Monitor
+  f5networks.f5_modules.bigip_monitor_icmp:
+    name: "{{ objname }}"
+    state: "absent"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

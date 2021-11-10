@@ -1,0 +1,9 @@
+---
+# tasks file for remove-ltm-tcp-profile.yml
+
+- name: Remove TCP Profile
+  f5networks.f5_modules.bigip_profile_tcp:
+    name: "{{ objname }}"
+    state: "absent"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

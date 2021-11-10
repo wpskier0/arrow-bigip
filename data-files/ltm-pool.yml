@@ -1,0 +1,5 @@
+---
+objname: "acawb.arrow.com_7788_pool"
+monitors:
+  - http1
+

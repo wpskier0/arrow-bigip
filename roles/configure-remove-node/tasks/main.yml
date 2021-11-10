@@ -1,0 +1,7 @@
+---
+# tasks file for remove-ltm-node.yml
+
+- name: Remove LTM Node
+  import_tasks: remove-ltm-node.yml
+  tags:
+    - ltm_node

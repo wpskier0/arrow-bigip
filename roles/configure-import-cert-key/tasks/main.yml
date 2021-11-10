@@ -1,0 +1,7 @@
+---
+# tasks file for create-import-cert-key
+
+- name: Import Cert Key
+  import_tasks: import-cert-key.yml
+  tags:
+    - ltm_import_cert_key

@@ -1,0 +1,7 @@
+---
+# tasks file for create-ltm-virtual-server
+
+- name: Create LTM Virtual Server
+  import_tasks: create-ltm-virtual-server.yml
+  tags:
+    - ltm_virtual_server

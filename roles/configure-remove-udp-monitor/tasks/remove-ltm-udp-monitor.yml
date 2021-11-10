@@ -1,0 +1,9 @@
+---
+# tasks file for remove-ltm-udp-monitor.yml
+
+- name: Remove UDP Monitor
+  f5networks.f5_modules.bigip_monitor_udp:
+    name: "{{ objname }}"
+    state: "absent"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

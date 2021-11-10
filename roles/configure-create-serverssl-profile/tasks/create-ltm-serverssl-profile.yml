@@ -1,0 +1,11 @@
+---
+# tasks file for create-ltm-serverssl-profile.yml
+
+- name: Create Serverssl Profile
+  f5networks.f5_modules.bigip_profile_server_ssl:
+    name: "{{ objname }}"
+    ciphers: "{{ ciphers | default('DEFAULT') }}"
+    parent: "{{ parent | default('serverssl') }}"
+    state: "{{ state | default('present') }}"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"

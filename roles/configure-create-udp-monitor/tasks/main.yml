@@ -1,0 +1,7 @@
+---
+# tasks file for create-ltm-udp-monitor
+
+- name: Create LTM UDP Monitor
+  import_tasks: create-ltm-udp-monitor.yml
+  tags:
+    - ltm_udp_monitor
