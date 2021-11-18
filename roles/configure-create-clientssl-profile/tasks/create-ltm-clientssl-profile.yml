@@ -7,7 +7,11 @@
     ciphers: "{{ ciphers | default('DEFAULT') }}"
     cipher_group: "{{ cipher_group | default('') }}"
     parent: "{{ parent | default('clientssl') }}"
-    cert_key_chain: "{{ cert_key_chain | default(omit) }}"
+    cert_key_chain:
+      - true_names: "no"
+        cert: "{{ cert | default(omit) }}"
+        key: "{{ key | default(omit) }}"
+        chain: "{{ chain | default(omit) }}"
     state: "{{ state | default('present') }}"
     partition: "{{ partition | default('Common') }}"
     provider: "{{ provider }}"
