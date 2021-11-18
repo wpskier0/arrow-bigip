@@ -8,7 +8,7 @@
     cipher_group: "{{ cipher_group | default('') }}"
     parent: "{{ parent | default('clientssl') }}"
     cert_key_chain:
-      - true_names: "no"
+      - true_names: "{{ true_names | default('no') }}"
         cert: "{{ cert | default(omit) }}"
         key: "{{ key | default(omit) }}"
         chain: "{{ chain | default(omit) }}"
