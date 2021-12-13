@@ -11,10 +11,10 @@
     encrypt_cookie_pool_name: "{{ encrypt_cookie_pool_name | default('no') }}"
     encryption_passphrase: "{{ encryption_passphrase | default(omit) }}"
     expiration:
-      - days: "{{ days | default(omit) }}"
+        days: "{{ days | default(omit) }}"
         hours: "{{ hours | default(omit) }}"
         minutes: "{{ minutes | default(omit) }}"
-        seconds: "{{ seconds | default(omit) }}"
+        seconds: "{{ seconds | default('0') }}"
     http_only: "{{ http_only | default('yes') }}"
     match_across_pools: "{{ match_across_pools | default('no') }}"
     match_across_services: "{{ match_across_services | default('no') }}"
