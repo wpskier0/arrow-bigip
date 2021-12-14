@@ -5,6 +5,7 @@
   f5networks.f5_modules.bigip_profile_server_ssl:
     name: "{{ objname }}"
     ciphers: "{{ ciphers | default('DEFAULT') }}"
+    cipher_group: "{{ cipher_group | default('') }}"
     parent: "{{ parent | default('serverssl') }}"
     state: "{{ state | default('present') }}"
     partition: "{{ partition | default('Common') }}"
