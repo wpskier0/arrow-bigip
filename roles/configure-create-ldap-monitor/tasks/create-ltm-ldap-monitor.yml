@@ -13,6 +13,8 @@
     port: "{{ port | default('*') }}"
     mandatory_attributes: "{{ mandatory_attributes | default('none') }}"
     manual_resume: "{{ manual_resume | default('false') }}"
+    target_username: "{{ target_username | default(omit) }}"
+    target_password: "{{ target_password | default(omit) }}"
     time_until_up: "{{ time_until_up | default('0') }}"
     timeout: "{{ timeout | default('31') }}"
     parent: "{{ defaults_from | default('/Common/ldap') }}"
