@@ -1,3 +1,0 @@
----
-key_name: arw.ac
-key_content: "{{ lookup('file', '/mnt/storage/Work/Arrow/Ansible Project/create-var-files/all-partitions/key_arw.ac') }}"

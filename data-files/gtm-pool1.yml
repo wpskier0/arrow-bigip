@@ -1,8 +1,0 @@
----
-gtm_pool_name: "Pool1"
-fallback_lb_method: "return-to-dns"
-members:
-  - server: "bigip-arrow1"
-    virtual_server: "/ACUNITY/acawb.arrow.com_http"    
-preferred_lb_method: "global-availability"
-type: "a"

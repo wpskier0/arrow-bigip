@@ -1,4 +1,0 @@
----
-cert_name: arw.ac
-cert_content: "{{ lookup('file', '/mnt/storage/Work/Arrow/Ansible Project/create-var-files/all-partitions/cert_arw.ac') }}"
-

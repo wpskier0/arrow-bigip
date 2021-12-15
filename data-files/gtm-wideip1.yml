@@ -1,8 +1,0 @@
----
-gtm_wideip_name: "test1.example.com"
-persistence: "yes"
-pool_lb_method: "global-availability"
-pools:
-  - name: "Pool1"
-  - name: "Pool2"
-type: "a"

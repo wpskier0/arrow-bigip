@@ -1,5 +1,0 @@
----
-objname: HSL_Splunk
-module: ltm
-src: /mnt/storage/Work/Arrow/Ansible Project/create-var-files/all-partitions/ACUNITY-HSL_Splunk.txt
-
