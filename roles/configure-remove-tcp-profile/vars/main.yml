@@ -1,8 +1,2 @@
 ---
-# vars file for arrow-bigip
-provider:
-  server: 10.4.0.73
-  server_port: 443
-  validate_certs: no
-  user: ansible_admin
-  password: 9l+fy0nZ
+# vars file for configure-remove-tcp-profile/

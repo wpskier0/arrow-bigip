@@ -1,0 +1,7 @@
+---
+# tasks file for configure-deploy-entire-configuration.yml
+
+- name: Deploy Entire Configuration
+  import_tasks: configure-deploy-entire-configuration.yml
+  tags:
+    - ltm_deploy

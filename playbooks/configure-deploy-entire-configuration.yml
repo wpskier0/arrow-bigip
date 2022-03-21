@@ -1,0 +1,17 @@
+---
+
+- name: Deploy Entire Configuration
+  hosts: all
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  tasks:
+  - name: Deploy Entire Configuration
+    include_role:
+      name: configure-deploy-entire-configuration
+  - name: Save Config
+    include_role:
+      name: save-config

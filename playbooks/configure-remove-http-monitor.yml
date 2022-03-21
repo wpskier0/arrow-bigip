@@ -2,7 +2,7 @@
 
 - name: Remove HTTP Monitor
   hosts: all
-  connection: local
+  connection: netconf
   gather_facts: no
 
   collections:
