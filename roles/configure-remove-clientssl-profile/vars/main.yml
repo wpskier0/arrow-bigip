@@ -1,2 +1,5 @@
 ---
-# vars file for configure-remove-clientssl-profile/
+# vars file
+provider:
+  server: 10.4.0.71
+  server_port: 443
