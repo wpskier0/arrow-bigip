@@ -1,3 +1,3 @@
 # arrow-bigip
 
-This is a test repo for a project
+This is a repo for a BIG-IP Ansible project
