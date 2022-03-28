@@ -12,4 +12,5 @@
     state: "{{ state | default('present') }}"
     description: "{{ description | default(omit) }}"
     partition: "{{ partition | default('Common') }}"
+    preserve_node: "{{ preserve_node | default('yes') }}"
     provider: "{{ provider }}"

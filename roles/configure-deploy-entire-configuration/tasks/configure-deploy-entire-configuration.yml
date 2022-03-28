@@ -517,6 +517,7 @@
     state: "{{ item.state | default('present') }}"
     description: "{{ item.description | default(omit) }}"
     partition: "{{ item.partition | default('Common') }}"
+    preserve_node: "{{ item.preserve_node | default('yes') }}"
     provider: "{{ provider }}"
   delegate_to: localhost
   when: pool_members is defined
