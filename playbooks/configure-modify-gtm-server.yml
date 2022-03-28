@@ -1,6 +1,7 @@
 ---
 
 - name: Modify GTM Server
+  hosts: all
   connection: netconf
   gather_facts: no
 
@@ -11,7 +12,6 @@
   - name: Modify GTM Server
     include_role:
       name: configure-modify-gtm-server
-    
   - name: Save Config
     include_role:
       name: save-config
