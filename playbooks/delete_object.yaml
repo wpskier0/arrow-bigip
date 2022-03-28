@@ -1,9 +1,0 @@
----
-- name: Create Object
-  hosts: all
-  gather_facts: false
-  connection: local
-  collections:
-    - f5networks.f5_modules
-  roles:
-    - arrow-bigip

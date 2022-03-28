@@ -1,0 +1,17 @@
+---
+
+- name: Modify GTM Server
+  connection: netconf
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+
+  tasks:
+  - name: Modify GTM Server
+    include_role:
+      name: configure-modify-gtm-server
+    
+  - name: Save Config
+    include_role:
+      name: save-config

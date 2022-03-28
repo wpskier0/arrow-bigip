@@ -1,0 +1,11 @@
+---
+# tasks file for configure-modify-gtm-server.yml
+
+- name: Modify GTM Server
+  f5networks.f5_modules.bigip_gtm_server:
+    name: "{{ objname }}"
+    datacenter: "{{ datacenter | default(omit) }}"
+    state: "{{ state | default('present') }}"
+    partition: "{{ partition | default('Common') }}"
+    provider: "{{ provider }}"
+    
