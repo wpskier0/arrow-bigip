@@ -547,7 +547,7 @@
     name: "{{ item.objname }}"
     address_translation: "{{ item.address_translation | default('yes') }}"
     default_persistence_profile: "{{ item.default_persistence_profile | default(omit) }}"
-    destination: "{{ item.destination }}"
+    destination: "{{ item.destination | default(omit) }}"
     enabled_vlans: "{{ item.enabled_vlans | default(omit) }}"
     disabled_vlans: "{{ item.disabled_vlans | default(omit) }}"
     fallback_persistence_profile: "{{ item.fallback_persistence_profile | default(omit) }}"
