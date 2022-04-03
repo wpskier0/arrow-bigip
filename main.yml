@@ -1,0 +1,9 @@
+---
+# vars file
+
+provider:
+  server: 10.4.0.71
+  server_port: 443
+  validate_certs: no
+  user: ansible_admin
+  password: 9l+fy0nZ

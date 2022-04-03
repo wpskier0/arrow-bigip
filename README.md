@@ -1,3 +1,3 @@
 # arrow-bigip
 
-This is a repo for a BIG-IP Ansible project
+This is a repo for BIG-IP Ansible playbooks
